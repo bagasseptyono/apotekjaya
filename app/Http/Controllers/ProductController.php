@@ -43,13 +43,13 @@ class ProductController extends Controller
             'description' => 'required|string',
             'stock' => 'required|integer',
             'price' => 'required|numeric',
-            'image' => 'required|image|mimes:jpeg,png,jpg|max:2048'
+            'image' => 'required|image|max:2048'
         ]);
 
         $data['image'] = $request->file('image')->store('products', 'public');
 
         Product::create($data);
-        return redirect()->route('products.index')->with('success', 'Produk berhasil ditambahkan!');
+        return redirect()->route('admin.products.index')->with('success', 'Produk berhasil ditambahkan!');
     }
 
     /**

@@ -14,6 +14,12 @@
     <p>Tanggal: {{ $order->created_at->format('d-m-Y') }}</p>
     <p>Metode Pembayaran: {{ $order->payment_method == 1 ? 'Bank Transfer' : 'Cash' }}</p>
 
+    <h4>Informasi Pemesan</h4>
+    <p>Nama: {{ $order->user->name }}</p>
+    <p>Email: {{ $order->user->email }}</p>
+    <p>Telepon: {{ $order->user->phone_number }}</p>
+    <p>Alamat: {{ $order->user->address }}, {{ $order->user->city }}</p>
+
     <table>
         <thead>
             <tr>

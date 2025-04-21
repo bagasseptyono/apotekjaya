@@ -117,7 +117,7 @@ class OrderController extends Controller
 
     public function exportPdf($id)
     {
-        $order = Order::with('order_details.product')->findOrFail($id);
+        $order = Order::with(['order_details.product','user'])->findOrFail($id);
 
         $pdf = FacadePdf::loadView('orders.pdf', compact('order'));
 
