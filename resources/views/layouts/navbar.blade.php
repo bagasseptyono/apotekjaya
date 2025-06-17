@@ -37,7 +37,7 @@
                         </a>
                         <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
                             @if (Auth::user()->role == 'admin')
-                            <li><a class="dropdown-item" href="{{ route('admin.products.index') }}"><i class="fa-solid fa-user-tie" style="color: #63E6BE;"></i> Admin</a></li>
+                            <li><a class="dropdown-item" href="{{ route('admin.dashboard') }}"><i class="fa-solid fa-user-tie" style="color: #63E6BE;"></i> Admin</a></li>
                             @endif
 
                             <li><a class="dropdown-item" href="{{ route('profile.edit') }}"><i class="fa-solid fa-user" style="color: #63E6BE;"></i> Profile</a></li>

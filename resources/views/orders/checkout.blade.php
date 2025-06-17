@@ -81,7 +81,7 @@
         const statusInput = document.getElementById('status_input');
 
         if (paymentMethod === '2') {
-            statusInput.value = 'selesai'; // Cash
+            statusInput.value = 'pending'; // Cash
         } else {
             statusInput.value = 'pending'; // Bank Transfer atau lainnya
         }

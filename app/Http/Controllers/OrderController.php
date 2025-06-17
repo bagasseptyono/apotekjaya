@@ -117,7 +117,7 @@ class OrderController extends Controller
 
     public function exportPdf($id)
     {
-        $order = Order::with(['order_details.product','user'])->findOrFail($id);
+        $order = Order::with(['order_details.product', 'user'])->findOrFail($id);
 
         $pdf = FacadePdf::loadView('orders.pdf', compact('order'));
 
@@ -143,5 +143,30 @@ class OrderController extends Controller
         $order->update(['status' => $request->status]);
 
         return back()->with('success', 'Status pesanan berhasil diperbarui.');
+    }
+
+    public function cancelOrder(Request $request, $id)
+    {
+        $order = Order::with('order_details.product')->findOrFail($id);
+
+        if ($order->user_id != Auth::user()->id) {
+            return back()->with('error', 'Bukan pemilik order ini.');
+        }
+
+        if ($order->status == 'selesai' || $order->status == 'batal') {
+            return back()->with('error', 'Tidak bisa membatalkan order yang telah selesai atau dibatalkan.');
+        }
+
+        foreach ($order->order_details as $detail) {
+            $product = $detail->product;
+            if ($product) {
+                $product->stock += $detail->quantity;
+                $product->save();
+            }
+        }
+        $order->status = 'batal';
+        $order->save();
+
+        return back()->with('success', 'Pesanan berhasil dibatalkan dan stok telah dikembalikan.');
     }
 }

@@ -27,7 +27,7 @@
             <div class="mb-3">
                 <label>Kategori</label>
                 <select name="category_id" id="category" class="form-control">
-                        <option value="{{ $product->category_id }}">{{ $category->name }}</option>
+                        <option value="{{ $product->category_id }}">{{ $product->itemCategory->name }}</option>
                     @foreach ($itemcategories as $category)
                         <option value="{{ $category->id }}">{{ $category->name }}</option>
                     @endforeach

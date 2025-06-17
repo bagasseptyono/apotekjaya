@@ -45,7 +45,6 @@
                             </td>
                             <td>
                                 <div class="d-flex justify-content-between">
-                                    @if($order->payment_method == 1)
                                     <form action="{{ route('admin.orders.updateStatus', $order->id) }}" method="POST">
                                         @csrf
                                         @method('PATCH')
@@ -59,9 +58,6 @@
                                             <button class="btn btn-success" type="submit">Ubah</button>
                                         </div>
                                     </form>
-                                @else
-                                    <span class="badge bg-secondary">Cash - Tidak Perlu Status</span>
-                                @endif
                                     <a href="{{ route('orders.show', $order->id) }}" class="btn btn-sm btn-primary"><i class="fa-solid fa-eye"></i></a>
                                 </div>
                             </td>

@@ -5,8 +5,13 @@
     <hr>
     <ul class="nav nav-pills flex-column mb-auto">
         <li class="nav-item">
+            <a href="{{ route('admin.dashboard') }}" class="nav-link {{ request()->is('admin/dashboard*') ? 'active' : 'text-dark' }}">
+                <i class="fa-solid fa-shop"></i> Dashboard
+            </a>
+        </li>
+        <li class="nav-item">
             <a href="{{ route('admin.products.index') }}" class="nav-link {{ request()->is('admin/products*') ? 'active' : 'text-dark' }}">
-                <i class="fa-solid fa-shop"></i> Produk
+                <i class="fa-solid fa-box"></i> Produk
             </a>
         </li>
         <li>

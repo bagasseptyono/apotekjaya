@@ -13,14 +13,15 @@ class ProductController extends Controller
      */
     public function index(Request $request)
     {
-        $query = Product::query();
+        $categories = ItemCategory::all();
+        $products = Product::query();
 
-        if ($request->has('category')) {
-            $query->where('category_id', $request->category);
+        if ($request->filled('category')) {
+            $products->where('category_id', $request->category);
         }
 
-        $products = $query->get();
-        return view('products.index', compact('products'));
+        $products = $products->get();
+        return view('products.index', compact('products', 'categories'));
     }
 
     /**
@@ -68,9 +69,10 @@ class ProductController extends Controller
      */
     public function edit(string $id)
     {
+        $itemcategories = ItemCategory::all();
         $product = Product::where('id', $id)->first();
 
-        return view('products.edit', compact('product'));
+        return view('products.edit', compact('product','itemcategories'));
     }
 
     /**
@@ -91,6 +93,8 @@ class ProductController extends Controller
 
         if ($request->hasFile('image')) {
             $data['image'] = $request->file('image')->store('products', 'public');
+        }else {
+            $data['image'] = $product->image;
         }
 
         $product->update($data);

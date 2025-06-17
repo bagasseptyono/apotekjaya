@@ -21,7 +21,7 @@ return new class extends Migration
             $table->string('image');
             $table->timestamps();
 
-            $table->foreign('category_id')->references('id')->on('item_categories');
+            $table->foreign('category_id')->references('id')->on('item_categories')->onDelete('cascade');
         });
     }
 

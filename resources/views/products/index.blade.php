@@ -6,6 +6,22 @@
     </header>
     <div class="container my-5">
         <h2 class="mb-4 text-center">Daftar Produk</h2>
+        <form method="GET" action="{{ route('products.index') }}" class="mb-3">
+            <div class="row g-2 align-items-end">
+                <div class="col-md-4">
+                    <label for="category" class="form-label">Filter Kategori</label>
+                    <select name="category" id="category" class="form-select" onchange="this.form.submit()">
+                        <option value="">Semua Kategori</option>
+                        @foreach($categories as $category)
+                            <option value="{{ $category->id }}" {{ request('category') == $category->id ? 'selected' : '' }}>
+                                {{ $category->name }}
+                            </option>
+                        @endforeach
+                    </select>
+                </div>
+            </div>
+        </form>
+
         <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-4 g-4">
             @foreach ($products as $product)
                 <div class="col">

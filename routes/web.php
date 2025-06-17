@@ -52,6 +52,10 @@ Route::middleware('auth')->group(function () {
         Route::resource('/admin/users', UserController::class);
 
         Route::get('/feedbacks', [FeedbackController::class, 'index'])->name('admin.feedback.index');
+        Route::put('/orders/{id}/cancel', [OrderController::class, 'cancelOrder'])->name('orders.cancel')->middleware('auth');
+
+        Route::get('/admin/dashboard', [AdminController::class, 'dashboard'])->name('admin.dashboard');
+
 
     });
 });

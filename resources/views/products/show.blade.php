@@ -18,7 +18,7 @@
                 <h4 class="text-success">Rp{{ number_format($product->price, 0, ',', '.') }}</h4>
 
                 <div class="mt-4">
-                    <a href="#" class="btn btn-success me-2">Beli Sekarang</a>
+                    <a href="{{ route('order.buy', $product->id) }}" class="btn btn-success me-2">Beli Sekarang</a>
                     <a href="{{ route('products.index') }}" class="btn btn-secondary">Kembali</a>
                 </div>
             </div>
